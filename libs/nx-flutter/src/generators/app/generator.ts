@@ -1,13 +1,9 @@
 import { join } from 'path';
-import { addProjectConfiguration, logger, Tree } from '@nx/devkit';
+import { addProjectConfiguration, Tree } from '@nx/devkit';
 
 import { AppGeneratorSchema } from './schema';
 import { NX_FLUTTER_PKG } from '../../lib/constants';
 import { FlutterProject } from '../../lib/models/flutter-project.model';
-import {
-  promptForPlatformOption,
-  promptForPlatformLanguagesOptions,
-} from '../../lib/utils/prompts.utils';
 import { addPluginToNxJson } from '../../lib/utils/nx.utils';
 import {
   createFlutterProject,
@@ -22,9 +18,6 @@ import {
  */
 export async function appGenerator(tree: Tree, options: AppGeneratorSchema) {
   addPluginToNxJson(tree, NX_FLUTTER_PKG);
-
-  options = await promptForPlatformOption(options);
-  options = await promptForPlatformLanguagesOptions(options);
 
   const project = new FlutterProject('app', options, tree);
   await createFlutterProject(project);
