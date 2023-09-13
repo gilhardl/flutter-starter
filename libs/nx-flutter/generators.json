@@ -4,6 +4,21 @@
       "factory": "./src/generators/app/generator",
       "schema": "./src/generators/app/schema.json",
       "description": "Create a Flutter application."
+    },
+    "module": {
+      "factory": "./src/generators/module/generator",
+      "schema": "./src/generators/module/schema.json",
+      "description": "Create a Flutter module. (Embeddable Flutter view)"
+    },
+    "package": {
+      "factory": "./src/generators/package/generator",
+      "schema": "./src/generators/package/schema.json",
+      "description": "Create a Flutter package. (Pure Dart library)"
+    },
+    "plugin": {
+      "factory": "./src/generators/plugin/generator",
+      "schema": "./src/generators/plugin/schema.json",
+      "description": "Create a Flutter plugin. (Dart package + platform-specific code)"
     }
   }
 }
