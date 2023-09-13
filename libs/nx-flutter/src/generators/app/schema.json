@@ -53,7 +53,36 @@
         "macos",
         "web"
       ],
-      "x-prompt": "Which platforms the application support?"
+      "x-prompt": {
+        "message": "Which platforms the application support?",
+        "type": "list",
+        "items": [
+          {
+            "value": "android",
+            "label": "Android"
+          },
+          {
+            "value": "ios",
+            "label": "iOS"
+          },
+          {
+            "value": "linux",
+            "label": "linux"
+          },
+          {
+            "value": "windows",
+            "label": "windows"
+          },
+          {
+            "value": "macos",
+            "label": "macos"
+          },
+          {
+            "value": "web",
+            "label": "web"
+          }
+        ]
+      }
     },
     "androidLanguage": {
       "type": "string",
@@ -118,15 +147,9 @@
       "x-prompt": "Should we create empty application?"
     },
     "tags": {
-      "type": "array",
-      "description": "Add tags to the project (used for linting).",
-      "uniqueItems": true,
-      "items": {
-        "type": "string"
-      },
-      "minItems": 0,
-      "default": [],
-      "x-prompt": "What tags would you like to use?"
+      "type": "string",
+      "description": "Add tags to the project (used for linting). (comma-separated list)",
+      "x-prompt": "What tags would you like to use? (comma-separated list)"
     },
     "directory": {
       "type": "string",

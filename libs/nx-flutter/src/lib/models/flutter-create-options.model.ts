@@ -15,6 +15,6 @@ export interface FlutterCreateOptions {
   offline: boolean;
   overwrite: boolean;
 
-  tags: string[];
+  tags: string;
   directory: string;
 }

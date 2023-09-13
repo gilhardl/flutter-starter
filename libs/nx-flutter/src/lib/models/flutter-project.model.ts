@@ -129,7 +129,12 @@ export class FlutterProject {
     if (template == 'app') this.empty = options['empty'] ?? false;
     else this.empty = null;
 
-    this.tags = options.tags ? options.tags.map((s) => s.trim()) : [];
+    this.tags = options.tags
+      ? options.tags
+          .trim()
+          .split(',')
+          .map((s) => s.trim())
+      : [];
     const parentDirectory = this.template === 'app' ? appsDir : libsDir;
     this.directory = join(
       options.directory
