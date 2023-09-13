@@ -1,14 +1,8 @@
-import { join } from 'path';
-import { addProjectConfiguration, Tree } from '@nx/devkit';
+import { Tree } from '@nx/devkit';
 
-import { AppGeneratorSchema } from './schema';
-import { NX_FLUTTER_PKG } from '../../lib/constants';
+import { FlutterAppGeneratorOptions } from './schema';
 import { FlutterProject } from '../../lib/models/flutter-project.model';
-import { addPluginToNxJson } from '../../lib/utils/nx.utils';
-import {
-  createFlutterProject,
-  getFlutterProjectNxTargets,
-} from '../../lib/utils/flutter.utils';
+import projectGenerator from '../../lib/flutter-project-generator';
 
 /**
  * Nx generator for creating a Flutter application
@@ -16,19 +10,13 @@ import {
  * @param tree the file system tree
  * @param options the options passed to the generator
  */
-export async function appGenerator(tree: Tree, options: AppGeneratorSchema) {
-  addPluginToNxJson(tree, NX_FLUTTER_PKG);
-
+export async function appGenerator(
+  tree: Tree,
+  options: FlutterAppGeneratorOptions
+) {
   const project = new FlutterProject('app', options, tree);
-  await createFlutterProject(project);
 
-  addProjectConfiguration(tree, project.name, {
-    root: project.directory,
-    sourceRoot: join(project.directory, 'src'),
-    projectType: 'application',
-    targets: getFlutterProjectNxTargets(project),
-    tags: project.tags,
-  });
+  return projectGenerator(tree, project);
 }
 
 export default appGenerator;

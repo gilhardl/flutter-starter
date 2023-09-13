@@ -4,9 +4,12 @@
  * Each Nx generator of Flutter projects extends this interface to add
  * additional options.
  *
- * - {@link AppGeneratorSchema}
+ * - @see FlutterAppGeneratorOptions
+ * - @see FlutterModuleGeneratorOptions
+ * - @see FlutterPackageGeneratorOptions
+ * - @see FlutterPluginGeneratorOptions
  */
-export interface FlutterCreateOptions {
+export interface FlutterProjectGeneratorOptions {
   name: string;
   description: string;
   org: string;

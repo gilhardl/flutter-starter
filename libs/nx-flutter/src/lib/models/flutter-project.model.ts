@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { Tree, names, getWorkspaceLayout } from '@nx/devkit';
 
-import { FlutterCreateOptions } from './flutter-create-options.model';
+import { FlutterProjectGeneratorOptions } from './flutter-project-generator-options.model';
 import {
   AndroidLanguage,
   FlutterPlatform,
@@ -96,7 +96,7 @@ export class FlutterProject {
    */
   constructor(
     template: FlutterProjectTemplate,
-    options: FlutterCreateOptions,
+    options: FlutterProjectGeneratorOptions,
     tree: Tree
   ) {
     const { appsDir, libsDir } = getWorkspaceLayout(tree);

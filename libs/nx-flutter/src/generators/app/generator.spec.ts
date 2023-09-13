@@ -2,11 +2,11 @@ import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nx/devkit';
 
 import { appGenerator } from './generator';
-import { AppGeneratorSchema } from './schema';
+import { FlutterAppGeneratorOptions } from './schema';
 
 describe('app generator', () => {
   let tree: Tree;
-  const options: AppGeneratorSchema = {
+  const options: FlutterAppGeneratorOptions = {
     name: 'test',
     description: 'Test application',
     org: 'com.example',
@@ -17,7 +17,7 @@ describe('app generator', () => {
     offline: false,
     overwrite: false,
     empty: false,
-    tags: [],
+    tags: '',
     directory: '.',
   };
 

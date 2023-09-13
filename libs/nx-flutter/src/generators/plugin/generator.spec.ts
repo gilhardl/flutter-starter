@@ -2,11 +2,11 @@ import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nx/devkit';
 
 import { pluginGenerator } from './generator';
-import { PluginGeneratorSchema } from './schema';
+import { FlutterPluginGeneratorOptions } from './schema';
 
 describe('plugin generator', () => {
   let tree: Tree;
-  const options: PluginGeneratorSchema = {
+  const options: FlutterPluginGeneratorOptions = {
     name: 'test',
     description: 'Test application',
     org: 'com.example',
@@ -16,7 +16,7 @@ describe('plugin generator', () => {
     pub: true,
     offline: false,
     overwrite: false,
-    tags: [],
+    tags: '',
     directory: '.',
   };
 

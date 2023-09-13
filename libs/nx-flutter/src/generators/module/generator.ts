@@ -1,14 +1,8 @@
-import { join } from 'path';
-import { addProjectConfiguration, Tree } from '@nx/devkit';
+import { Tree } from '@nx/devkit';
 
-import { ModuleGeneratorSchema } from './schema';
-import { NX_FLUTTER_PKG } from '../../lib/constants';
+import { FlutterModuleGeneratorOptions } from './schema';
 import { FlutterProject } from '../../lib/models/flutter-project.model';
-import { addPluginToNxJson } from '../../lib/utils/nx.utils';
-import {
-  createFlutterProject,
-  getFlutterProjectNxTargets,
-} from '../../lib/utils/flutter.utils';
+import projectGenerator from '../../lib/flutter-project-generator';
 
 /**
  * Nx generator for creating a Flutter module (Embeddable Flutter view)
@@ -18,20 +12,11 @@ import {
  */
 export async function moduleGenerator(
   tree: Tree,
-  options: ModuleGeneratorSchema
+  options: FlutterModuleGeneratorOptions
 ) {
-  addPluginToNxJson(tree, NX_FLUTTER_PKG);
-
   const project = new FlutterProject('module', options, tree);
-  await createFlutterProject(project);
 
-  addProjectConfiguration(tree, project.name, {
-    root: project.directory,
-    sourceRoot: join(project.directory, 'src'),
-    projectType: 'library',
-    targets: getFlutterProjectNxTargets(project),
-    tags: project.tags,
-  });
+  return projectGenerator(tree, project);
 }
 
 export default moduleGenerator;

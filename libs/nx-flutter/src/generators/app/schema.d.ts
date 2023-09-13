@@ -1,7 +1,8 @@
 import { FlutterPlatform, AndroidLanguage, IosLanguage } from '../../types';
-import { FlutterCreateOptions } from '../../lib/models/flutter-create-options.model';
+import { FlutterProjectGeneratorOptions } from '../../lib/models/flutter-project-generator-options.model';
 
-export interface AppGeneratorSchema extends FlutterCreateOptions {
+export interface FlutterAppGeneratorOptions
+  extends FlutterProjectGeneratorOptions {
   empty: boolean;
   platforms: FlutterPlatform[];
   androidLanguage: AndroidLanguage;

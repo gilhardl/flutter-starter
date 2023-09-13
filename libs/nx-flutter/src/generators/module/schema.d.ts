@@ -1,3 +1,4 @@
-import { FlutterCreateOptions } from '../../lib/models/flutter-create-options.model';
+import { FlutterProjectGeneratorOptions } from '../../lib/models/flutter-project-generator-options.model';
 
-export interface ModuleGeneratorSchema extends FlutterCreateOptions {}
+export interface FlutterModuleGeneratorOptions
+  extends FlutterProjectGeneratorOptions {}

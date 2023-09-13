@@ -2,18 +2,18 @@ import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nx/devkit';
 
 import { moduleGenerator } from './generator';
-import { ModuleGeneratorSchema } from './schema';
+import { FlutterModuleGeneratorOptions } from './schema';
 
 describe('module generator', () => {
   let tree: Tree;
-  const options: ModuleGeneratorSchema = {
+  const options: FlutterModuleGeneratorOptions = {
     name: 'test',
     description: 'Test application',
     org: 'com.example',
     pub: true,
     offline: false,
     overwrite: false,
-    tags: [],
+    tags: '',
     directory: '.',
   };
 
