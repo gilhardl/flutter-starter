@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "App",
+  "title": "Flutter application generator",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The project name for this new Flutter application.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "pattern": "^[a-zA-Z].*$",
+      "x-prompt": "What name would you like to use?",
+      "x-priority": "important"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description to use for your new Flutter application. This string ends up in the pubspec.yaml file.",
+      "default": "A new Flutter application.",
+      "x-prompt": "What is the application about?",
+      "x-priority": "important"
+    },
+    "org": {
+      "type": "string",
+      "description": "The organization responsible for your new Flutter application, in reverse domain name notation. This string is used in Java package names and as prefix in the iOS bundle identifier.",
+      "default": "com.example",
+      "x-prompt": "What organization name would you like to use?",
+      "x-priority": "important"
+    },
+    "platforms": {
+      "type": "array",
+      "description": "The platforms supported by this application. Platform folders (e.g. android/) will be generated in the target project. Adding desktop platforms requires the corresponding desktop config setting to be enabled.",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "android",
+          "ios",
+          "linux",
+          "windows",
+          "macos",
+          "web"
+        ]
+      },
+      "minItems": 1,
+      "default": [
+        "android",
+        "ios",
+        "linux",
+        "windows",
+        "macos",
+        "web"
+      ],
+      "x-prompt": "Which platforms the application support?"
+    },
+    "androidLanguage": {
+      "type": "string",
+      "description": "The language to use for Android-specific code, either Java (legacy) or Kotlin (recommended).",
+      "default": "kotlin",
+      "x-prompt": {
+        "message": "Which language to use for Android-specific code?",
+        "type": "list",
+        "items": [
+          {
+            "value": "kotlin",
+            "label": "Kotlin"
+          },
+          {
+            "value": "java",
+            "label": "Java"
+          }
+        ]
+      }
+    },
+    "iosLanguage": {
+      "type": "string",
+      "description": "The language to use for iOS-specific code, either Objective-C (legacy) or Swift (recommended).",
+      "default": "swift",
+      "x-prompt": {
+        "message": "Which language to use for iOS-specific code?",
+        "type": "list",
+        "items": [
+          {
+            "value": "swift",
+            "label": "Swift"
+          },
+          {
+            "value": "objc",
+            "label": "Objective"
+          }
+        ]
+      }
+    },
+    "pub": {
+      "type": "boolean",
+      "description": "Whether to run \"flutter pub get\" after the project has been created.",
+      "default": true,
+      "x-prompt": "Should we run \"flutter pub get\" after the project has been created?"
+    },
+    "offline": {
+      "type": "boolean",
+      "description": "When \"flutter pub get\" is run by the create command, this indicates whether to run it in offline mode or not. In offline mode, it will need to have all dependencies already available in the pub cache to succeed.",
+      "default": false,
+      "x-prompt": "Should we run \"flutter pub get\" in offline mode?"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "When performing operations, overwrite existing files.",
+      "default": false,
+      "x-prompt": "Should we overwrite existing files?"
+    },
+    "empty": {
+      "type": "boolean",
+      "description": "Specifies creating using an application template with a main.dart that is minimal, including no comments, as a starting point for a new application.",
+      "default": false,
+      "x-prompt": "Should we create empty application?"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Add tags to the project (used for linting).",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "default": [],
+      "x-prompt": "What tags would you like to use?"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A directory where the application is placed.",
+      "default": ".",
+      "x-prompt": "Where would you like to create the application?"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
