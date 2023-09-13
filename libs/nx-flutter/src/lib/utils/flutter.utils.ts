@@ -51,7 +51,12 @@ export async function createFlutterProject(
     { key: 'android-language', value: project.androidLanguage },
     { key: 'ios-language', value: project.iosLanguage },
     { key: 'template', value: project.template },
-    { key: 'platforms', value: quote(project.platforms.join(',')) },
+    {
+      key: 'platforms',
+      value: project.platforms
+        ? quote(project.platforms.join(','))
+        : project.platforms,
+    },
   ]
     .filter((e) => !!e.value)
     .map((e) => `--${e.key}=${e.value}`)
