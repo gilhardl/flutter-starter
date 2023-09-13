@@ -1,6 +1,6 @@
 # nx-flutter
 
-This library was generated with [Nx](https://nx.dev).
+> Nx Plugin adding support for [Flutter](https://flutter.dev) in a Nx workspace
 
 ## Building
 
