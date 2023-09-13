@@ -135,12 +135,21 @@ export class FlutterProject {
           .split(',')
           .map((s) => s.trim())
       : [];
-    const parentDirectory = this.template === 'app' ? appsDir : libsDir;
+
+    options.directory = options.directory.trim();
+    const rootDirectory = this.template === 'app' ? appsDir : libsDir;
+    const parentDirectory = join(rootDirectory, options.directory);
+
     this.directory = join(
-      options.directory
-        ? join(parentDirectory, options.directory)
-        : parentDirectory,
+      options.directory ? parentDirectory : rootDirectory,
       this.name.replace(new RegExp('/', 'g'), '-')
     );
+
+    if (parentDirectory !== rootDirectory) {
+      const parentDirectoryName = names(
+        options.directory.replace(new RegExp('/', 'g'), '-')
+      ).fileName;
+      this.name = [parentDirectoryName, this.name].join('-');
+    }
   }
 }
