@@ -6,7 +6,6 @@ import {
   workspaceRoot,
   writeJson,
 } from '@nx/devkit';
-import { FlutterProject } from '../models/flutter-project.model';
 
 /**
  * Get the path to the project root
@@ -19,7 +18,7 @@ export function getProjectRoot(project: ProjectConfiguration) {
 }
 
 /**
- * Get the path to a file in the project
+ * Get the path of a file in the project
  *
  * @param project the Nx project
  * @returns the path to the file in the project
