@@ -1,4 +1,4 @@
-import { join } from 'path';
+import { join, resolve } from 'path';
 import {
   ProjectConfiguration,
   Tree,
@@ -6,6 +6,16 @@ import {
   workspaceRoot,
   writeJson,
 } from '@nx/devkit';
+
+/**
+ * Check if given file path is in the Nx workspace
+ *
+ * @param filePath the file path to check
+ * @returns true if the file path is in the Nx workspace, false otherwise
+ */
+export function isFilePathInWorkspace(filePath: string) {
+  return filePath.startsWith(resolve(workspaceRoot));
+}
 
 /**
  * Get the path to the project root

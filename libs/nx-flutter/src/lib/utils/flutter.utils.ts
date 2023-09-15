@@ -1,9 +1,14 @@
+import { readFileSync } from 'fs';
 import { execSync } from 'child_process';
-import { ProjectConfiguration, logger } from '@nx/devkit';
+import { load } from 'js-yaml';
+import { DependencyType, ProjectConfiguration, logger } from '@nx/devkit';
 import { fileExists } from 'nx/src/utils/fileutils';
 
-import { getProjectFilePath } from './nx.utils';
+import { quote } from './strings.utils';
+import { getProjectFilePath, isFilePathInWorkspace } from './nx.utils';
 import { FlutterProject } from '../models/flutter-project.model';
+import { Pubspec } from '../models/pubspec.model';
+import { join, resolve } from 'path';
 
 /**
  * Check if Flutter is installed
@@ -29,6 +34,24 @@ export function isFlutterInstalled(): boolean {
  */
 export function isFlutterProject(nxProject: ProjectConfiguration): boolean {
   return fileExists(getProjectFilePath(nxProject, 'pubspec.yaml'));
+}
+
+/**
+ * Resolve the absolute path to the given dependency which path is relative to.
+ *
+ * @param nxProject the Nx project to resolve the dependency from
+ * @param dependencyPath the relative dependency path to resolve form the Nx project
+ * @returns absolute path to the given dependency
+ */
+export function resolveFlutterProjectPathDependency(
+  nxProject: ProjectConfiguration,
+  dependencyPath: string
+): string {
+  return resolve(
+    getProjectFilePath(nxProject, 'pubspec.yaml'),
+    '..',
+    dependencyPath
+  );
 }
 
 /**
@@ -167,10 +190,78 @@ export function getFlutterProjectNxTargets(
   return targets;
 }
 
-function quote(text: string) {
-  if (!text || (text.startsWith('"') && text.endsWith('"'))) {
-    return text;
-  } else {
-    return `"${text.replace('"', '\\"')}"`;
-  }
+/**
+ * Filter Flutter projects from the given list of Nx projects the read packages Pubspec data.
+ *
+ * @param nxProjects list of Nx projects to inspect
+ * @returns a map of Flutter packages pubspec and it's Nx project associated, identified by it's Flutter package name.
+ */
+function inspectFlutterProjects(nxProjects: {
+  [projectName: string]: ProjectConfiguration;
+}): {
+  [flutterPackageName: string]: {
+    nxProject: ProjectConfiguration;
+    pubspec: Pubspec;
+  };
+} {
+  return Object.values(nxProjects)
+    .filter(isFlutterProject)
+    .reduce<{
+      [flutterPackageName: string]: {
+        nxProject: ProjectConfiguration;
+        pubspec: Pubspec;
+      };
+    }>((repository, nxProject) => {
+      const pubspec: Pubspec = load(
+        readFileSync(getProjectFilePath(nxProject, 'pubspec.yaml'), 'utf8')
+      );
+      return {
+        ...repository,
+        [pubspec.name]: {
+          nxProject,
+          pubspec,
+        },
+      };
+    }, {});
+}
+
+/**
+ * Get dependencies between Flutter packages from the given list of Nx projects.
+ *
+ * @param nxProjects list of Nx projects to inspect
+ * @returns dependencies between Flutter packages
+ */
+export function getFlutterPackagesDependencies(nxProjects: {
+  [projectName: string]: ProjectConfiguration;
+}) {
+  const flutterPackages = inspectFlutterProjects(nxProjects);
+
+  return Object.entries(flutterPackages).reduce((deps, entry) => {
+    const { nxProject, pubspec } = entry[1] as {
+      nxProject: ProjectConfiguration;
+      pubspec: Pubspec;
+    };
+
+    return [
+      ...deps,
+      ...Object.entries({
+        ...pubspec.dependencies,
+        ...pubspec.dev_dependencies,
+      })
+        .filter(
+          ([_, value]) =>
+            typeof value === 'object' &&
+            !!value['path'] &&
+            isFilePathInWorkspace(
+              resolveFlutterProjectPathDependency(nxProject, value['path'])
+            )
+        )
+        .map(([dependency, _]) => ({
+          source: nxProject.name,
+          target: flutterPackages[dependency].nxProject.name,
+          sourceFile: join(nxProject.root, 'pubspec.yaml'),
+          dependencyType: DependencyType.static,
+        })),
+    ];
+  }, []);
 }
