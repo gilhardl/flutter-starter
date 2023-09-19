@@ -10,7 +10,7 @@ import projectGenerator from '../../lib/flutter-project-generator';
  * @param tree the file system tree
  * @param options the options passed to the generator
  */
-export async function appGenerator(
+export default async function (
   tree: Tree,
   options: FlutterAppGeneratorOptions
 ) {
@@ -18,5 +18,3 @@ export async function appGenerator(
 
   return projectGenerator(tree, project);
 }
-
-export default appGenerator;
