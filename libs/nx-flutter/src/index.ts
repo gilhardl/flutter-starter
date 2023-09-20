@@ -1,13 +1,19 @@
-import {
-  CreateDependencies,
-  CreateDependenciesContext,
-  ProjectGraphDependencyWithFile,
-} from '@nx/devkit';
+import { CreateDependencies } from '@nx/devkit';
 
-import { getFlutterPackagesDependencies } from './lib/utils/flutter.utils';
+import projectsGraph from './projects-graph';
 
-export const createDependencies: CreateDependencies = (
-  ctx: CreateDependenciesContext
-): ProjectGraphDependencyWithFile[] => {
-  return getFlutterPackagesDependencies(ctx.projectsConfigurations.projects);
-};
+import appNxGenerator from './generators/app/generator';
+import moduleNxGenerator from './generators/module/generator';
+import packageNxGenerator from './generators/package/generator';
+import pluginNxGenerator from './generators/plugin/generator';
+
+import runNxExecutor from './executors/run/executor';
+
+export const createDependencies: CreateDependencies = projectsGraph;
+
+export const appGenerator = appNxGenerator;
+export const moduleGenerator = moduleNxGenerator;
+export const packageGenerator = packageNxGenerator;
+export const pluginGenerator = pluginNxGenerator;
+
+export const runExecutor = runNxExecutor;

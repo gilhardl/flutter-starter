@@ -1,8 +1,7 @@
 import { Tree } from '@nx/devkit';
 
 import { FlutterPackageGeneratorOptions } from './schema';
-import { FlutterProject } from '../../lib/models/flutter-project.model';
-import projectGenerator from '../../lib/flutter-project-generator';
+import projectGenerator from '../../lib/generators/flutter-project.generator';
 
 /**
  * Nx generator for creating a Flutter package (pure Dart library)
@@ -14,7 +13,5 @@ export default async function (
   tree: Tree,
   options: FlutterPackageGeneratorOptions
 ) {
-  const project = new FlutterProject('package', options, tree);
-
-  return projectGenerator(tree, project);
+  return projectGenerator('package', options, tree);
 }

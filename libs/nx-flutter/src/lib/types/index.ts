@@ -23,3 +23,28 @@ export type AndroidLanguage = 'java' | 'kotlin';
  * An iOS language.
  */
 export type IosLanguage = 'objc' | 'swift';
+
+/**
+ * A Flutter build mode.
+ */
+export type FlutterBuildMode = 'debug' | 'profile' | 'release';
+
+/**
+ * A Flutter web renderer.
+ */
+export type FlutterWebRenderer = 'auto' | 'canvasKit' | 'html';
+
+/**
+ * A Flutter command.
+ */
+export type FlutterCommandType = 'run';
+
+/**
+ * A key=value shell argument.
+ */
+export type KeyValueArgument = { key: string; value: string | null };
+
+/**
+ * A boolean shell argument.
+ */
+export type BooleanArgument = { key: string; value?: boolean | null };

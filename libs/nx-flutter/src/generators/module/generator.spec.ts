@@ -1,19 +1,18 @@
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nx/devkit';
 
-import { moduleGenerator } from './generator';
+import moduleGenerator from './generator';
 import { FlutterModuleGeneratorOptions } from './schema';
+import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
+
+const defaultOptions = DEFAULT_FLUTTER_CLI_ARGS.create;
 
 describe('module generator', () => {
   let tree: Tree;
   const options: FlutterModuleGeneratorOptions = {
     name: 'test',
-    description: 'Test application',
-    org: 'com.example',
-    pub: true,
-    offline: false,
-    overwrite: false,
-    tags: '',
+    ...defaultOptions,
+    tags: undefined,
     directory: '.',
   };
 

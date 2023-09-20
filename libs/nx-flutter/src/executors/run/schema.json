@@ -1,0 +1,232 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Run your Flutter app on an attached device.",
+  "description": "Run \"flutter help run\" for additional details.",
+  "type": "object",
+  "properties": {
+    "verbose": {
+      "type": "boolean",
+      "description": "Noisy logging, including all shell commands executed.",
+      "default": false
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "Target device id or name (prefixes allowed)."
+    },
+    "mode": {
+      "type": "string",
+      "description": "Application build mode.",
+      "default": "debug",
+      "enum": [
+        "debug",
+        "profile",
+        "release"
+      ]
+    },
+    "dartDefine": {
+      "type": "array",
+      "description": "Additional key-value pairs that will be available as constants from the String.fromEnvironment, bool.fromEnvironment, int.fromEnvironment, and double.fromEnvironment constructors.",
+      "items": {
+        "type": "string",
+        "uniqueItems": true
+      },
+      "default": []
+    },
+    "dartDefineFromFile": {
+      "type": "string",
+      "description": "The path of a json format file where flutter define a global constant pool. Json entry will be available as constants from the String.fromEnvironment, bool.fromEnvironment, int.fromEnvironment, and double.fromEnvironment constructors; the key and field are json values.",
+      "pattern": "\\.(json)$"
+    },
+    "flavor": {
+      "type": "boolean",
+      "description": "Build a custom app flavor as defined by platform-specific build setup. Supports the use of product flavors in Android Gradle scripts, and the use of custom Xcode schemes.",
+      "default": false
+    },
+    "webRenderer": {
+      "type": "string",
+      "description": "The renderer implementation to use when building for the web.\nAuto - Use the HTML renderer on mobile devices, and CanvasKit on desktop devices.\nCanvasKit - Always use the CanvasKit renderer. This renderer uses WebGL and WebAssembly to render graphics.\nHTML - Always use the HTML renderer. This renderer uses a combination of HTML, CSS, SVG, 2D Canvas, and WebGL.",
+      "default": "auto",
+      "enum": [
+        "auto",
+        "canvaskit",
+        "html"
+      ]
+    },
+    "useApplicationBinary": {
+      "type": "string",
+      "description": "Specify a pre-built application binary to use when running. For Android applications, this must be the path to an APK. For iOS applications, the path to an IPA. Other device types do not yet support prebuilt application binaries.",
+      "pattern": "\\.(apk)$"
+    },
+    "traceStartup": {
+      "type": "boolean",
+      "description": "Trace application startup, then exit, saving the trace to a file. By default, this will be saved in the \"build\" directory. If the FLUTTER_TEST_OUTPUTS_DIR environment variable is set, the file will be written there instead.",
+      "default": false
+    },
+    "cacheStartupProfile": {
+      "type": "boolean",
+      "description": "Caches the CPU profile collected before the first frame for startup analysis.",
+      "default": true
+    },
+    "verboseSystemLogs": {
+      "type": "boolean",
+      "description": "Include verbose logging from the Flutter engine.",
+      "default": false
+    },
+    "cacheSksl": {
+      "type": "boolean",
+      "description": "Cache the shader in the SkSL format instead of in binary or GLSL formats.",
+      "default": false
+    },
+    "dumpSkpOnShaderCompilation": {
+      "type": "boolean",
+      "description": "Automatically dump the skp that triggers new shader compilations. This is useful for writing custom ShaderWarmUp to reduce jank. By default, this is not enabled as it introduces significant overhead. This is only available in profile or debug builds.",
+      "default": false
+    },
+    "purgePersistentCache": {
+      "type": "boolean",
+      "description": "Removes all existing persistent caches. This allows reproducing shader compilation jank that normally only happens the first time an app is run, or for reliable testing of compilation jank fixes (e.g. shader warm-up).",
+      "default": false
+    },
+    "route": {
+      "type": "string",
+      "description": "Which route to load when running the app."
+    },
+    "startPaused": {
+      "type": "boolean",
+      "description": "Start in a paused mode and wait for a debugger to connect.",
+      "default": true
+    },
+    "endlessTraceBuffer": {
+      "type": "boolean",
+      "description": "Enable tracing to an infinite buffer, instead of a ring buffer. This is useful when recording large traces. To use an endless buffer to record startup traces, combine this with \"traceStartup\".",
+      "default": false
+    },
+    "traceSystrace": {
+      "type": "boolean",
+      "description": "Enable tracing to the system tracer. This is only useful on platforms where such a tracer is available (Android, iOS, macOS and Fuchsia).",
+      "default": false
+    },
+    "traceSkia": {
+      "type": "boolean",
+      "description": "Enable tracing of Skia code. This is useful when debugging the raster thread (formerly known as the GPU thread). By default, Flutter will not log Skia code, as it introduces significant overhead that may affect recorded performance metrics in a misleading way.",
+      "default": false
+    },
+    "enableDartProfiling": {
+      "type": "boolean",
+      "description": "Whether the Dart VM sampling CPU profiler is enabled. This flag is only meaningnful in debug and profile builds. (defaults to on)",
+      "default": true
+    },
+    "enableSoftwareRendering": {
+      "type": "boolean",
+      "description": "Enable rendering using the Skia software backend. This is useful when testing Flutter on emulators. By default, Flutter will attempt to either use OpenGL or Vulkan and fall back to software when neither is available.",
+      "default": false
+    },
+    "skiaDeterministicRendering": {
+      "type": "boolean",
+      "description": "When combined with \"enableSoftwareRendering\", this should provide completely deterministic (i.e. reproducible) Skia rendering. This is useful for testing purposes (e.g. when comparing screenshots).",
+      "default": false
+    },
+    "dartEntrypointArgs": {
+      "type": "array",
+      "description": "Pass a list of arguments to the Dart entrypoint at application startup. By default this is main(List<String> args). Specify this option multiple times each with one argument to pass multiple arguments to the Dart entrypoint. Currently this is only supported on desktop platforms.",
+      "items": {
+        "type": "string",
+        "uniqueItems": true
+      },
+      "default": []
+    },
+    "webLaunchUrl": {
+      "type": "string",
+      "description": "The URL to provide to the browser. Defaults to an HTTP URL with the host name of \"--web-hostname\", the port of \"--web-port\", and the path set to \"/\"."
+    },
+    "target": {
+      "type": "string",
+      "description": "The main entry-point file of the application, as run on the device. If the \"target\" option is omitted, but a file name is provided on the command line, then that is used instead. (defaults to \"lib/main.dart\")",
+      "pattern": "\\.(dart)$"
+    },
+    "deviceVmservicePort": {
+      "type": "number",
+      "description": "Look for vmservice connections only from the specified port. Specifying port 0 (the default) will accept the first vmservice discovered.",
+      "default": 0
+    },
+    "hostVmservicePort": {
+      "type": "number",
+      "description": "When a device-side vmservice port is forwarded to a host-side port, use this value as the host port. Specifying port 0 (the default) will find a random free host port.",
+      "default": 0
+    },
+    "pub": {
+      "type": "boolean",
+      "description": "Whether to run \"flutter pub get\" before executing this command. (defaults to on)",
+      "default": true
+    },
+    "trackWidgetCreation": {
+      "type": "boolean",
+      "description": "Track widget creation locations. This enables features such as the widget inspector. This parameter is only functional in debug mode (i.e. when compiling JIT, not AOT). (defaults to on)",
+      "default": true
+    },
+    "nullAssertions": {
+      "type": "boolean",
+      "description": "Perform additional null assertions on the boundaries of migrated and un-migrated code. This setting is not currently supported on desktop devices.",
+      "default": true
+    },
+    "deviceUser": {
+      "type": "string",
+      "description": "Identifier number for a user or work profile on Android only. Run \"adb shell pm list users\" for available identifiers."
+    },
+    "deviceTimeout": {
+      "type": "number",
+      "description": "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
+      "default": 10
+    },
+    "ddsPort": {
+      "type": "number",
+      "description": "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port.",
+      "default": 0
+    },
+    "androidProjectArg": {
+      "type": "array",
+      "description": "Additional arguments specified as key=value that are passed directly to the gradle project via the -P flag. These can be accessed in build.gradle via the \"project.property\" API.",
+      "items": {
+        "type": "string",
+        "uniqueItems": true
+      },
+      "default": []
+    },
+    "multidex": {
+      "type": "boolean",
+      "description": "When enabled, indicates that the app should be built with multidex support. This flag adds the dependencies for multidex when the minimum android sdk is 20 or below. For android sdk versions 21 and above, multidex support is native. (defaults to on)",
+      "default": true
+    },
+    "ignoreDeprecation": {
+      "type": "boolean",
+      "description": "Indicates that the app should ignore deprecation warnings and continue to build using deprecated APIs. Use of this flag may cause your app to fail to build when deprecated APIs are removed.",
+      "default": false
+    },
+    "awaitFirstFrameWhenTracing": {
+      "type": "boolean",
+      "description": "Whether to wait for the first frame when tracing startup (\"traceStartup\"), or just dump the trace as soon as the application is running. The first frame is detected by looking for a Timeline event with the name \"Rasterized first useful frame\". By default, the widgets library's binding takes care of sending this event. (defaults to on)",
+      "default": true
+    },
+    "useTestFonts": {
+      "type": "boolean",
+      "description": "Enable (and default to) the \"Ahem\" font. This is a special font used in tests to remove any dependencies on the font metrics. It is enabled when you use \"flutter test\". Set this flag when running a test using \"flutter run\" for debugging purposes. This flag is only available when running in debug mode.",
+      "default": true
+    },
+    "build": {
+      "type": "boolean",
+      "description": "If necessary, build the app before running. (defaults to on)",
+      "default": true
+    },
+    "hot": {
+      "type": "boolean",
+      "description": "Run with support for hot reloading. Only available for debug mode. Not available with \"traceStartup\". (defaults to on)",
+      "default": true
+    },
+    "pidFile": {
+      "type": "string",
+      "description": "Specify a file to write the process ID to. You can send SIGUSR1 to trigger a hot reload and SIGUSR2 to trigger a hot restart. The file is created when the signal handlers are hooked and deleted when they are removed."
+    }
+  },
+  "required": []
+}

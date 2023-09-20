@@ -1,23 +1,18 @@
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nx/devkit';
 
-import { appGenerator } from './generator';
+import appGenerator from './generator';
 import { FlutterAppGeneratorOptions } from './schema';
+import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
+
+const defaultOptions = DEFAULT_FLUTTER_CLI_ARGS.create;
 
 describe('app generator', () => {
   let tree: Tree;
   const options: FlutterAppGeneratorOptions = {
     name: 'test',
-    description: 'Test application',
-    org: 'com.example',
-    platforms: [],
-    androidLanguage: 'kotlin',
-    iosLanguage: 'swift',
-    pub: true,
-    offline: false,
-    overwrite: false,
-    empty: false,
-    tags: '',
+    ...defaultOptions,
+    tags: undefined,
     directory: '.',
   };
 

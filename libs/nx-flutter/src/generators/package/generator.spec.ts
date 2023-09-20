@@ -1,19 +1,18 @@
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nx/devkit';
 
-import { packageGenerator } from './generator';
+import packageGenerator from './generator';
 import { FlutterPackageGeneratorOptions } from './schema';
+import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
+
+const defaultOptions = DEFAULT_FLUTTER_CLI_ARGS.create;
 
 describe('package generator', () => {
   let tree: Tree;
   const options: FlutterPackageGeneratorOptions = {
     name: 'test',
-    description: 'Test application',
-    org: 'com.example',
-    pub: true,
-    offline: false,
-    overwrite: false,
-    tags: '',
+    ...defaultOptions,
+    tags: undefined,
     directory: '.',
   };
 
