@@ -19,10 +19,7 @@ import {
 } from '../models/flutter-project-generator-options.model';
 import { addPluginToNxJson } from '../utils/nx.utils';
 import { quote } from '../utils/strings.utils';
-import {
-  getFlutterProjectNxTargets,
-  runFlutterCommand,
-} from '../utils/flutter.utils';
+import { runFlutterCommand } from '../utils/flutter.utils';
 import { FlutterAppGeneratorOptions } from '../../generators/app/schema';
 import { FlutterPluginGeneratorOptions } from '../../generators/plugin/schema';
 
@@ -77,7 +74,7 @@ export default async function (
     sourceRoot: join(normalizedOptions.directory, 'src'),
     projectType:
       normalizedOptions.template === 'app' ? 'application' : 'library',
-    targets: getFlutterProjectNxTargets(normalizedOptions),
+    targets: getNxTargets(normalizedOptions),
     tags: normalizedOptions.tags,
   });
 }
@@ -207,4 +204,63 @@ function normalizeOptions(
     tags,
     directory,
   };
+}
+
+/**
+ * Get Nx targets for the given project.
+ */
+function getNxTargets(
+  options: FlutterProjectGeneratorOptionsNormalized
+): Record<string, any> {
+  const tasks = [
+    { name: 'analyze', command: 'analyze' },
+    { name: 'clean', command: 'clean' },
+    { name: 'format', command: `format ${options.directory}/*` },
+    { name: 'test', command: 'test' },
+  ];
+
+  if (options.template === 'app') {
+    tasks.push(
+      { name: 'gen-l10n', command: 'gen-l10n' },
+      { name: 'drive', command: 'drive' },
+      { name: 'run', command: 'run' },
+      { name: 'attach', command: 'attach' },
+      { name: 'install', command: 'install' }
+    );
+    if (!!options.platforms) {
+      if (options.platforms.indexOf('android') != -1) {
+        tasks.push(
+          { name: 'build-aar', command: 'build aar' },
+          { name: 'build-apk', command: 'build apk' },
+          { name: 'build-appbundle', command: 'build appbundle' },
+          { name: 'build-bundle', command: 'build bundle' }
+        );
+      }
+      if (options.platforms.indexOf('ios') != -1) {
+        tasks.push(
+          { name: 'build-ios', command: 'build ios' },
+          { name: 'build-ios-framework', command: 'build ios-framework' },
+          { name: 'build-ipa', command: 'build ipa' }
+        );
+      }
+    }
+  }
+  const targets = {};
+  for (const task of tasks) {
+    targets[task.name] = {
+      executor: `nx:run-commands`,
+      options: {
+        command: `${task.name === 'format' ? 'dart' : 'flutter'} ${
+          task.command
+        }`,
+        cwd: options.directory,
+      },
+      ...(task.name.startsWith('build-')
+        ? {
+            outputs: [`{workspaceRoot}/${options.directory}/build`],
+          }
+        : {}),
+    };
+  }
+  return targets;
 }
