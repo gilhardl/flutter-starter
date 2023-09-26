@@ -1,9 +1,9 @@
-import {ExecutorContext} from '@nx/devkit';
+import { ExecutorContext } from '@nx/devkit';
 
-import {FlutterRunExecutorOptions} from './schema';
-import {DEFAULT_FLUTTER_CLI_ARGS} from '../../lib/constants';
+import { FlutterRunExecutorOptions } from './schema';
+import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
 import flutterCommandExecutor from '../../lib/executors/flutter-command.executor';
-import {FlutterRunExecutorOptionsNormalized} from '../../lib/models/flutter-run-executor-options.model';
+import { FlutterRunExecutorOptionsNormalized } from '../../lib/models/flutter-run-executor-options.model';
 
 /**
  * Nx executor for running a Flutter application
@@ -18,7 +18,7 @@ export default async function (
   const project = context.projectsConfigurations.projects[context.projectName];
   const normalizedOptions = normalizeOptions(options);
 
-  return flutterCommandExecutor(project, {
+  return flutterCommandExecutor(project, 'run', {
     keyValue: [
       ...(normalizedOptions.dartDefine?.map((value) => ({
         key: 'dart-define',

@@ -37,7 +37,7 @@ export type FlutterWebRenderer = 'auto' | 'canvasKit' | 'html';
 /**
  * A Flutter command.
  */
-export type FlutterCommandType = 'create' | 'clean' | 'run';
+export type FlutterCommand = 'create' | 'analyze' | 'clean' | 'run';
 
 /**
  * Shell command arguments.

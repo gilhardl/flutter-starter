@@ -18,7 +18,7 @@ export default async function (
   const project = context.projectsConfigurations.projects[context.projectName];
   const normalizedOptions = normalizeOptions(options);
 
-  return flutterCommandExecutor(project, {
+  return flutterCommandExecutor(project, 'clean', {
     keyValue: [],
     boolean: [{ key: 'verbose', value: normalizedOptions.verbose }],
   });

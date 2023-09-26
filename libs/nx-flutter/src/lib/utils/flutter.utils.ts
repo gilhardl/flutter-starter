@@ -5,7 +5,7 @@ import { load } from 'js-yaml';
 import { logger, ProjectConfiguration } from '@nx/devkit';
 import { fileExists } from 'nx/src/utils/fileutils';
 
-import { CommandArguments, FlutterCommandType } from '../types';
+import { CommandArguments, FlutterCommand } from '../types';
 import { Pubspec } from '../models/pubspec.model';
 import { stringifyShellArguments } from './shell.utils';
 import { runCommand } from './process.utils';
@@ -68,10 +68,13 @@ export function resolveFlutterProjectPathDependency(
  *
  * It is a wrapper around the `flutter clean` command.
  *
+ * @param command the Flutter command to run
+ * @param args arguments to pass to the Flutter command
+ * @param cwd directory path in which run the given command
  * @returns a promise that resolves success of the command execution
  */
 export async function runFlutterCommand(
-  command: FlutterCommandType,
+  command: FlutterCommand,
   args: CommandArguments,
   cwd?: string
 ) {

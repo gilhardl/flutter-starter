@@ -2,6 +2,11 @@ import { exec } from 'child_process';
 
 const LARGE_BUFFER = 1024 * 1000000;
 
+/** Utility function to run a command in a child process.
+ *
+ * @param command the command to run
+ * @param cwd directory path in which run the given command
+ */
 export function runCommand(command: string, cwd?: string): Promise<number> {
   return new Promise((resolve, reject) => {
     const childProcess = exec(command, {

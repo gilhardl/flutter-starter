@@ -1,22 +1,24 @@
 import { join } from 'path';
 import { logger, ProjectConfiguration, workspaceRoot } from '@nx/devkit';
 
-import { CommandArguments } from '../types';
+import { CommandArguments, FlutterCommand } from '../types';
 import { runFlutterCommand } from '../utils/flutter.utils';
 
 /**
  * Nx executor for running a Flutter command
  *
  * @param nxProject the Nx project to run the command on
- * @param args the arguments to pass to the flutter command
+ * @param command the Flutter command to run
+ * @param args arguments to pass to the flutter command
  */
 export default async function (
   nxProject: ProjectConfiguration,
+  command: FlutterCommand,
   args: CommandArguments
 ) {
   try {
     const success = await runFlutterCommand(
-      'clean',
+      command,
       args,
       join(workspaceRoot, nxProject.root)
     );
