@@ -31,6 +31,7 @@ export default async function (
       { key: 'fatalInfos', value: normalizedOptions.fatalInfos },
       { key: 'fatalWarnings', value: normalizedOptions.fatalWarnings },
     ],
+    positional: [],
   });
 }
 

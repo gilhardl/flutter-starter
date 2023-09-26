@@ -4,6 +4,7 @@ import {
   getWorkspaceLayout,
   names,
   Tree,
+  workspaceRoot,
 } from '@nx/devkit';
 
 import { DEFAULT_FLUTTER_CLI_ARGS, NX_FLUTTER_PKG } from '../constants';
@@ -17,7 +18,7 @@ import {
   FlutterProjectGeneratorOptions,
   FlutterProjectGeneratorOptionsNormalized,
 } from '../models/flutter-project-generator-options.model';
-import { addPluginToNxJson } from '../utils/nx.utils';
+import { addPluginToNxJson, isNxProject } from '../utils/nx.utils';
 import { quote } from '../utils/strings.utils';
 import { runFlutterCommand } from '../utils/flutter.utils';
 import { FlutterAppGeneratorOptions } from '../../generators/app/schema';
@@ -43,40 +44,46 @@ export default async function (
     getWorkspaceLayout(tree)
   );
 
-  await runFlutterCommand('create', {
-    keyValue: [
-      {
-        key: 'project-name',
-        value: normalizedOptions.name.replace(new RegExp('-', 'g'), '_'),
-      },
-      { key: 'org', value: normalizedOptions.org },
-      { key: 'description', value: quote(normalizedOptions.description) },
-      { key: 'android-language', value: normalizedOptions.androidLanguage },
-      { key: 'ios-language', value: normalizedOptions.iosLanguage },
-      { key: 'template', value: normalizedOptions.template },
-      {
-        key: 'platforms',
-        value: normalizedOptions.platforms
-          ? quote(normalizedOptions.platforms.join(','))
-          : null,
-      },
-    ],
-    boolean: [
-      { key: 'pub', value: normalizedOptions.pub },
-      { key: 'offline', value: normalizedOptions.offline },
-      { key: 'overwrite', value: normalizedOptions.overwrite },
-      { key: 'empty', value: normalizedOptions.empty },
-    ],
-  });
+  await runFlutterCommand(
+    'create',
+    {
+      keyValue: [
+        {
+          key: 'project-name',
+          value: normalizedOptions.name.replace(new RegExp('-', 'g'), '_'),
+        },
+        { key: 'org', value: normalizedOptions.org },
+        { key: 'description', value: quote(normalizedOptions.description) },
+        { key: 'android-language', value: normalizedOptions.androidLanguage },
+        { key: 'ios-language', value: normalizedOptions.iosLanguage },
+        { key: 'template', value: normalizedOptions.template },
+        {
+          key: 'platforms',
+          value: normalizedOptions.platforms
+            ? quote(normalizedOptions.platforms.join(','))
+            : null,
+        },
+      ],
+      boolean: [
+        { key: 'pub', value: normalizedOptions.pub },
+        { key: 'offline', value: normalizedOptions.offline },
+        { key: 'overwrite', value: normalizedOptions.overwrite },
+        { key: 'empty', value: normalizedOptions.empty },
+      ],
+      positional: [normalizedOptions.directory],
+    },
+    workspaceRoot
+  );
 
-  addProjectConfiguration(tree, normalizedOptions.name, {
-    root: normalizedOptions.directory,
-    sourceRoot: join(normalizedOptions.directory, 'src'),
-    projectType:
-      normalizedOptions.template === 'app' ? 'application' : 'library',
-    targets: getNxTargets(normalizedOptions),
-    tags: normalizedOptions.tags,
-  });
+  if (!isNxProject(normalizedOptions.directory))
+    addProjectConfiguration(tree, normalizedOptions.name, {
+      root: normalizedOptions.directory,
+      sourceRoot: join(normalizedOptions.directory, 'src'),
+      projectType:
+        normalizedOptions.template === 'app' ? 'application' : 'library',
+      targets: getNxTargets(normalizedOptions),
+      tags: normalizedOptions.tags,
+    });
 }
 
 /**

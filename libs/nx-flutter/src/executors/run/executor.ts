@@ -130,6 +130,7 @@ export default async function (
       { key: 'build', value: normalizedOptions.build },
       { key: 'hot', value: normalizedOptions.hot },
     ],
+    positional: [],
   });
 }
 

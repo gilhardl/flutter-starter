@@ -1,11 +1,22 @@
 import { join, resolve } from 'path';
 import {
   ProjectConfiguration,
-  Tree,
   readJson,
+  Tree,
   workspaceRoot,
   writeJson,
 } from '@nx/devkit';
+import { fileExists } from 'nx/src/utils/fileutils';
+
+/**
+ * Check if the given directory Nx project
+ *
+ * @param directory the directory path
+ * @returns true if the directory is a Nx project, false otherwise
+ */
+export function isNxProject(directory: string): boolean {
+  return fileExists(join(directory, 'project.json'));
+}
 
 /**
  * Check if given file path is in the Nx workspace
@@ -31,6 +42,7 @@ export function getProjectRoot(project: ProjectConfiguration) {
  * Get the path of a file in the project
  *
  * @param project the Nx project
+ * @param relativeFile the path to the file relative to the project root
  * @returns the path to the file in the project
  */
 export function getProjectFilePath(

@@ -21,6 +21,7 @@ export default async function (
   return flutterCommandExecutor(project, 'clean', {
     keyValue: [],
     boolean: [{ key: 'verbose', value: normalizedOptions.verbose }],
+    positional: [],
   });
 }
 

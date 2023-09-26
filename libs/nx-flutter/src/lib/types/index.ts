@@ -43,9 +43,15 @@ export type FlutterCommand = 'create' | 'analyze' | 'clean' | 'run';
  * Shell command arguments.
  */
 export type CommandArguments = {
+  positional: PositionalArgument[];
   keyValue: KeyValueArgument[];
   boolean: BooleanArgument[];
 };
+
+/**
+ * A positional shell argument.
+ */
+export type PositionalArgument = string | null;
 
 /**
  * A key=value shell argument.

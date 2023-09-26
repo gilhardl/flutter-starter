@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { execSync } from 'child_process';
 import { load } from 'js-yaml';
-import { logger, ProjectConfiguration } from '@nx/devkit';
+import { logger, ProjectConfiguration, workspaceRoot } from '@nx/devkit';
 import { fileExists } from 'nx/src/utils/fileutils';
 
 import { CommandArguments, FlutterCommand } from '../types';
@@ -92,7 +92,9 @@ export async function runFlutterCommand(
     return;
   }
 
-  logger.info(`Running following command : ${cmd}`);
+  logger.info(
+    `Running command in ${cwd.replace(`${workspaceRoot}/`, '')} : ${cmd}`
+  );
   try {
     const exitCode = await runCommand(cmd, cwd);
 
