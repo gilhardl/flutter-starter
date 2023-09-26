@@ -23,6 +23,9 @@ export const DEFAULT_FLUTTER_CLI_ARGS = {
     overwrite: false,
     empty: false,
   },
+  clean: {
+    verbose: false,
+  },
   run: {
     verbose: false,
     deviceId: undefined,

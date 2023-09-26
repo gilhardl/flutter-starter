@@ -1,13 +1,13 @@
 import { ExecutorContext } from '@nx/devkit';
 
 import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
-import runExecutor from './executor';
-import { FlutterRunExecutorOptions } from './schema';
+import cleanExecutor from './executor';
+import { FlutterCleanExecutorOptions } from './schema';
 
-const defaultOptions = DEFAULT_FLUTTER_CLI_ARGS.run;
+const defaultOptions = DEFAULT_FLUTTER_CLI_ARGS.clean;
 
-describe('Run executor', () => {
-  const options: FlutterRunExecutorOptions = defaultOptions;
+describe('Clean executor', () => {
+  const options: FlutterCleanExecutorOptions = defaultOptions;
   const context = {
     cwd: '/root',
     root: '/root',
@@ -26,7 +26,7 @@ describe('Run executor', () => {
   } as ExecutorContext;
 
   it('can run', async () => {
-    const output = await runExecutor(options, context);
+    const output = await cleanExecutor(options, context);
     expect(output.success).toBe(true);
   });
 });

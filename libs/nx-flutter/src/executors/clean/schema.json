@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Delete the build/ and .dart_tool/ directories.",
+  "description": "Run \"flutter help clean\" for additional details.",
+  "type": "object",
+  "properties": {
+    "verbose": {
+      "type": "boolean",
+      "description": "Noisy logging, including all shell commands executed.",
+      "default": false
+    }
+  },
+  "required": []
+}
