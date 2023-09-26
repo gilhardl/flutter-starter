@@ -18,9 +18,10 @@ import {
   FlutterProjectGeneratorOptionsNormalized,
 } from '../models/flutter-project-generator-options.model';
 import { addPluginToNxJson } from '../utils/nx.utils';
+import { quote } from '../utils/strings.utils';
 import {
-  createFlutterProject,
   getFlutterProjectNxTargets,
+  runFlutterCommand,
 } from '../utils/flutter.utils';
 import { FlutterAppGeneratorOptions } from '../../generators/app/schema';
 import { FlutterPluginGeneratorOptions } from '../../generators/plugin/schema';
@@ -44,7 +45,32 @@ export default async function (
     options,
     getWorkspaceLayout(tree)
   );
-  await createFlutterProject(normalizedOptions);
+
+  await runFlutterCommand('create', {
+    keyValue: [
+      {
+        key: 'project-name',
+        value: normalizedOptions.name.replace(new RegExp('-', 'g'), '_'),
+      },
+      { key: 'org', value: normalizedOptions.org },
+      { key: 'description', value: quote(normalizedOptions.description) },
+      { key: 'android-language', value: normalizedOptions.androidLanguage },
+      { key: 'ios-language', value: normalizedOptions.iosLanguage },
+      { key: 'template', value: normalizedOptions.template },
+      {
+        key: 'platforms',
+        value: normalizedOptions.platforms
+          ? quote(normalizedOptions.platforms.join(','))
+          : null,
+      },
+    ],
+    boolean: [
+      { key: 'pub', value: normalizedOptions.pub },
+      { key: 'offline', value: normalizedOptions.offline },
+      { key: 'overwrite', value: normalizedOptions.overwrite },
+      { key: 'empty', value: normalizedOptions.empty },
+    ],
+  });
 
   addProjectConfiguration(tree, normalizedOptions.name, {
     root: normalizedOptions.directory,
@@ -64,7 +90,7 @@ export default async function (
  *
  * @param template the type of Flutter project to create
  * @param options the options passed to the generator
- * @param tree the file system tree
+ * @param workspaceLayout the Nx workspace layout config
  * @returns normalized options
  */
 function normalizeOptions(

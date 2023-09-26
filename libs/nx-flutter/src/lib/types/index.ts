@@ -37,7 +37,15 @@ export type FlutterWebRenderer = 'auto' | 'canvasKit' | 'html';
 /**
  * A Flutter command.
  */
-export type FlutterCommandType = 'run';
+export type FlutterCommandType = 'create' | 'clean' | 'run';
+
+/**
+ * Shell command arguments.
+ */
+export type CommandArguments = {
+  keyValue: KeyValueArgument[];
+  boolean: BooleanArgument[];
+};
 
 /**
  * A key=value shell argument.

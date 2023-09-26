@@ -1,4 +1,4 @@
-import { BooleanArgument, KeyValueArgument } from '../types';
+import { CommandArguments } from '../types';
 
 /**
  * Map lists of key-value and boolean arguments to a string of shell arguments.
@@ -7,10 +7,10 @@ import { BooleanArgument, KeyValueArgument } from '../types';
  * @param boolean list of boolean arguments
  * @returns all arguments as a string
  */
-export function stringifyShellArguments(
-  keyValue: KeyValueArgument[],
-  boolean: BooleanArgument[]
-): string {
+export function stringifyShellArguments({
+  keyValue,
+  boolean,
+}: CommandArguments): string {
   return [
     keyValue
       .filter((e) => e.value !== null && e.value !== undefined)
