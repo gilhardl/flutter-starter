@@ -1,14 +1,19 @@
 {
   "executors": {
-    "run": {
-      "implementation": "./src/executors/run/executor",
-      "schema": "./src/executors/run/schema.json",
-      "description": "Run your Flutter app on an attached device."
+    "analyze": {
+      "implementation": "./src/executors/analyze/executor",
+      "schema": "./src/executors/analyze/schema.json",
+      "description": "Analyze the project's Dart code."
     },
     "clean": {
       "implementation": "./src/executors/clean/executor",
       "schema": "./src/executors/clean/schema.json",
       "description": "Delete the build/ and .dart_tool/ directories."
+    },
+    "run": {
+      "implementation": "./src/executors/run/executor",
+      "schema": "./src/executors/run/schema.json",
+      "description": "Run your Flutter app on an attached device."
     }
   }
 }

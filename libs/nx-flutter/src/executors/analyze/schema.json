@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Analyze the project's Dart code.",
+  "description": "Run \"flutter help analyze\" for additional details.",
+  "type": "object",
+  "properties": {
+    "verbose": {
+      "type": "boolean",
+      "description": "Noisy logging, including all shell commands executed.",
+      "default": false
+    },
+    "currentPackage": {
+      "type": "boolean",
+      "description": "Analyze the current project, if applicable.",
+      "default": true
+    },
+    "watch": {
+      "type": "boolean",
+      "description": "Run analysis continuously, watching the filesystem for changes.",
+      "default": false
+    },
+    "write": {
+      "type": "string",
+      "description": "Also output the results to a file. This is useful with \"--watch\" if you want a file to always contain the latest results."
+    },
+    "suggestions": {
+      "type": "boolean",
+      "description": "Show suggestions about the current flutter project.",
+      "default": true
+    },
+    "pub": {
+      "type": "boolean",
+      "description": "Whether to run \"flutter pub get\" before executing this command.",
+      "default": true
+    },
+    "congratulate": {
+      "type": "boolean",
+      "description": "Show output even when there are no errors, warnings, hints, or lints. Ignored if \"--watch\" is specified.",
+      "default": true
+    },
+    "preamble": {
+      "type": "boolean",
+      "description": "When analyzing the flutter repository, display the number of files that will be analyzed.",
+      "default": true
+    },
+    "fatalInfos": {
+      "type": "boolean",
+      "description": "Treat info level issues as fatal.",
+      "default": true
+    },
+    "fatalWarnings": {
+      "type": "boolean",
+      "description": "Treat warning level issues as fatal.",
+      "default": true
+    }
+  },
+  "required": []
+}

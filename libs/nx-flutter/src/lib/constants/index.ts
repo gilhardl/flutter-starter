@@ -23,6 +23,18 @@ export const DEFAULT_FLUTTER_CLI_ARGS = {
     overwrite: false,
     empty: false,
   },
+  analyze: {
+    verbose: false,
+    currentPackage: true,
+    watch: false,
+    write: undefined,
+    suggestions: true,
+    pub: true,
+    congratulate: true,
+    preamble: true,
+    fatalInfos: true,
+    fatalWarnings: true,
+  },
   clean: {
     verbose: false,
   },
