@@ -1,5 +1,5 @@
 /**
- * Normalized options passed to the `flutter run` command.
+ * Normalized options passed to the `flutter analyze` command.
  */
 export interface FlutterAnalyzeExecutorOptionsNormalized {
   /**
