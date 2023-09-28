@@ -12,5 +12,11 @@ assignees: ''
 **Context**
 A clear and concise description of the context in which the user story will be integrated.
 
-**Describe the story**
-A full description of the user story.
+**Expected result**
+A clear and concise description of what the user should expect about this feature.
+
+**User story**
+A bullet-list of actions taken by the user to end to the expected result.
+
+**Solution**
+A clear and concise description of what should happen.
