@@ -58,6 +58,16 @@ export const DEFAULT_FLUTTER_CLI_ARGS = {
     useEscaping: true,
     suppressWarnings: true,
   },
+  install: {
+    verbose: false,
+    deviceId: undefined,
+    mode: 'debug',
+    useApplicationBinary: undefined,
+    flavor: undefined,
+    deviceTimeout: 10,
+    deviceUser: undefined,
+    uninstallOnly: false,
+  },
   run: {
     verbose: false,
     deviceId: undefined,

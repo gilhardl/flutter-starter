@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Install a Flutter app on an attached device.",
+  "description": "Run \"flutter help run\" for additional details.",
+  "type": "object",
+  "properties": {
+    "verbose": {
+      "type": "boolean",
+      "description": "Noisy logging, including all shell commands executed.",
+      "default": false
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "Target device id or name (prefixes allowed)."
+    },
+    "mode": {
+      "type": "string",
+      "description": "Application build mode.",
+      "default": "debug",
+      "enum": [
+        "debug",
+        "profile",
+        "release"
+      ]
+    },
+    "useApplicationBinary": {
+      "type": "string",
+      "description": "Specify a pre-built application binary to use when running. For Android applications, this must be the path to an APK. For iOS applications, the path to an IPA.\nOther device types do not yet support prebuilt application binaries.",
+      "pattern": "\\.(apk)$"
+    },
+    "flavor": {
+      "type": "string",
+      "description": "Build a custom app flavor as defined by platform-specific build setup.\nSupports the use of product flavors in Android Gradle scripts, and the use of custom Xcode schemes."
+    },
+    "deviceTimeout": {
+      "type": "number",
+      "description": "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
+      "default": 10
+    },
+    "deviceUser": {
+      "type": "string",
+      "description": "Identifier number for a user or work profile on Android only. Run \"adb shell pm list users\" for available identifiers."
+    },
+    "uninstallOnly": {
+      "type": "boolean",
+      "description": "Uninstall the app if already on the device. Skip install.",
+      "default": false
+    }
+  },
+  "required": []
+}

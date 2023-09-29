@@ -42,6 +42,7 @@ export type FlutterCommand =
   | 'analyze'
   | 'clean'
   | 'gen-l10n'
+  | 'install'
   | 'run';
 
 /**
