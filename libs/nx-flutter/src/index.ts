@@ -1,4 +1,4 @@
-import { CreateDependencies } from '@nx/devkit';
+import { CreateDependencies, Executor, Generator } from '@nx/devkit';
 
 import projectsGraph from './projects-graph';
 
@@ -17,15 +17,15 @@ import testNxExecutor from './executors/test/executor';
 
 export const createDependencies: CreateDependencies = projectsGraph;
 
-export const appGenerator = appNxGenerator;
-export const moduleGenerator = moduleNxGenerator;
-export const packageGenerator = packageNxGenerator;
-export const pluginGenerator = pluginNxGenerator;
+export const appGenerator: Generator = appNxGenerator;
+export const moduleGenerator: Generator = moduleNxGenerator;
+export const packageGenerator: Generator = packageNxGenerator;
+export const pluginGenerator: Generator = pluginNxGenerator;
 
-export const analyzeExecutor = analyzeNxExecutor;
-export const attachExecutor = attachNxExecutor;
-export const cleanExecutor = cleanNxExecutor;
-export const genL10nExecutor = genL10nNxExecutor;
-export const installExecutor = installNxExecutor;
-export const runExecutor = runNxExecutor;
-export const testExecutor = testNxExecutor;
+export const analyzeExecutor: Executor = analyzeNxExecutor;
+export const attachExecutor: Executor = attachNxExecutor;
+export const cleanExecutor: Executor = cleanNxExecutor;
+export const genL10nExecutor: Executor = genL10nNxExecutor;
+export const installExecutor: Executor = installNxExecutor;
+export const runExecutor: Executor = runNxExecutor;
+export const testExecutor: Executor = testNxExecutor;
