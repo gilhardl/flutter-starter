@@ -5,6 +5,11 @@
       "schema": "./src/executors/analyze/schema.json",
       "description": "Analyze the project's Dart code."
     },
+    "attach": {
+      "implementation": "./src/executors/attach/executor",
+      "schema": "./src/executors/attach/schema.json",
+      "description": "Attach to a running app."
+    },
     "clean": {
       "implementation": "./src/executors/clean/executor",
       "schema": "./src/executors/clean/schema.json",
@@ -25,10 +30,10 @@
       "schema": "./src/executors/run/schema.json",
       "description": "Run your Flutter app on an attached device."
     },
-    "attach": {
-      "implementation": "./src/executors/attach/executor",
-      "schema": "./src/executors/attach/schema.json",
-      "description": "Attach to a running app."
+    "test": {
+      "implementation": "./src/executors/test/executor",
+      "schema": "./src/executors/test/schema.json",
+      "description": "Run Flutter unit tests for the current project."
     }
   }
 }

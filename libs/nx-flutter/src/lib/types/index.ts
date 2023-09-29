@@ -35,6 +35,11 @@ export type FlutterBuildMode = 'debug' | 'profile' | 'release';
 export type FlutterWebRenderer = 'auto' | 'canvasKit' | 'html';
 
 /**
+ * A Flutter test reporter type.
+ */
+export type FlutterTestReporter = 'compact' | 'expanded' | 'github' | 'json';
+
+/**
  * A Flutter command.
  */
 export type FlutterCommand =
@@ -44,7 +49,8 @@ export type FlutterCommand =
   | 'clean'
   | 'gen-l10n'
   | 'install'
-  | 'run';
+  | 'run'
+  | 'test';
 
 /**
  * Shell command arguments.

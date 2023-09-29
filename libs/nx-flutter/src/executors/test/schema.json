@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Run Flutter unit tests for the current project.",
+  "description": "Run \"flutter help test\" for additional details.",
+  "type": "object",
+  "properties": {
+    "verbose": {
+      "type": "boolean",
+      "description": "Noisy logging, including all shell commands executed.",
+      "default": false
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "Target device id or name (prefixes allowed)."
+    },
+    "pub": {
+      "type": "boolean",
+      "description": "Whether to run \"flutter pub get\" before executing this command.",
+      "default": true
+    },
+    "nullAssertions": {
+      "type": "boolean",
+      "description": "Perform additional null assertions on the boundaries of migrated and un-migrated code. This setting is not currently supported on desktop devices.",
+      "default": true
+    },
+    "trackWidgetCreation": {
+      "type": "boolean",
+      "description": "Track widget creation locations. This enables features such as the widget inspector. This parameter is only functional in debug mode (i.e. when compiling JIT, not AOT). (defaults to on)",
+      "default": true
+    },
+    "dartDefine": {
+      "type": "array",
+      "description": "Additional key-value pairs that will be available as constants from the String.fromEnvironment, bool.fromEnvironment, int.fromEnvironment, and double.fromEnvironment constructors.",
+      "items": {
+        "type": "string",
+        "uniqueItems": true
+      },
+      "default": []
+    },
+    "dartDefineFromFile": {
+      "type": "string",
+      "description": "The path of a json format file where flutter define a global constant pool. Json entry will be available as constants from the String.fromEnvironment, bool.fromEnvironment, int.fromEnvironment, and double.fromEnvironment constructors; the key and field are json values.",
+      "pattern": "\\.(json)$"
+    },
+    "webRenderer": {
+      "type": "string",
+      "description": "The renderer implementation to use when building for the web.\nAuto - Use the HTML renderer on mobile devices, and CanvasKit on desktop devices.\nCanvasKit - Always use the CanvasKit renderer. This renderer uses WebGL and WebAssembly to render graphics.\nHTML - Always use the HTML renderer. This renderer uses a combination of HTML, CSS, SVG, 2D Canvas, and WebGL.",
+      "default": "auto",
+      "enum": [
+        "auto",
+        "canvaskit",
+        "html"
+      ]
+    },
+    "deviceUser": {
+      "type": "string",
+      "description": "Identifier number for a user or work profile on Android only. Run \"adb shell pm list users\" for available identifiers."
+    },
+    "flavor": {
+      "type": "string",
+      "description": "Build a custom app flavor as defined by platform-specific build setup.\nSupports the use of product flavors in Android Gradle scripts, and the use of custom Xcode schemes."
+    },
+    "name": {
+      "type": "string",
+      "description": "A regular expression matching substrings of the names of tests to run"
+    },
+    "plainName": {
+      "type": "string",
+      "description": "A plain-text substring of the names of tests to run."
+    },
+    "tags": {
+      "type": "array",
+      "description": "Run only tests associated with the specified tags. See: https://pub.dev/packages/test#tagging-tests",
+      "items": {
+        "type": "string",
+        "uniqueItems": true
+      },
+      "default": []
+    },
+    "excludeTags": {
+      "type": "array",
+      "description": "Run only tests that do not have the specified tags. See: https://pub.dev/packages/test#tagging-tests",
+      "items": {
+        "type": "string",
+        "uniqueItems": true
+      },
+      "default": []
+    },
+    "startPaused": {
+      "type": "boolean",
+      "description": "Start in a paused mode and wait for a debugger to connect.",
+      "default": true
+    },
+    "runSkipped":  {
+      "type": "boolean",
+      "description": "Run skipped tests instead of skipping them.",
+      "default": false
+    },
+    "coverage": {
+      "type":  "boolean",
+      "description":  "Whether to collect coverage information.",
+      "default":  false
+    },
+    "mergeCoverage":  {
+      "type":  "boolean",
+      "description":  "Whether to merge coverage data with \"coverage/lcov.base.info\". Implies collecting coverage data. (Requires lcov.)",
+      "default":  false
+    },
+    "branchCoverage": {
+      "type":  "boolean",
+      "description":  "Whether to collect branch coverage information. Implies collecting coverage data.",
+      "default":  false
+    },
+    "coveragePath":  {
+      "type":  "string",
+      "description":  "Where to store coverage information (if coverage is enabled)."
+    },
+    "updateGoldens": {
+      "type":  "boolean",
+      "description":  "Whether \"matchesGoldenFile()\" calls within your test methods should update the golden files rather than test for an existing match.",
+      "default":  false
+    },
+    "concurrency":  {
+      "type":  "number",
+      "description":  "The number of concurrent test processes to run. This will be ignored when running integration tests."
+    },
+    "testAssets": {
+      "type":  "boolean",
+      "description":  "Whether to build the assets bundle for testing. This takes additional time before running the tests. Consider using \"--no-test-assets\" if assets are not required.",
+      "default":  false
+    },
+    "testRandomizeOrderingSeed":  {
+      "type":  "string",
+      "description":  "The seed to randomize the execution order of test cases within test files. Must be a 32bit unsigned integer or the string \"random\", which indicates that a seed should be selected randomly. By default, tests run in the order they are declared."
+    },
+    "totalShards": {
+      "type":  "number",
+      "description":  "Tests can be sharded with the \"--total-shards\" and \"--shard-index\" arguments, allowing you to split up your test suites and run them separately."
+    },
+    "shardIndex":  {
+      "type":  "number",
+      "description":  "Tests can be sharded with the \"--total-shards\" and \"--shard-index\" arguments, allowing you to split up your test suites and run them separately."
+    },
+    "reporter": {
+      "type":  "string",
+      "description":  "Set how to print test results. If unset, value will default to either compact or expanded.",
+      "default": "compact",
+      "enum": [
+        "compact",
+        "expanded",
+        "github",
+        "json"
+      ]
+    },
+    "timeout": {
+      "type": "string",
+      "description": "The default test timeout, specified either in seconds (e.g. \"60s\"), as a multiplier of the default timeout (e.g. \"2x\"), or as the string \"none\" to disable the timeout entirely."
+    },
+    "ddsPort": {
+      "type": "number",
+      "description": "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port.",
+      "default": 0
+    }
+  },
+  "required": []
+}
