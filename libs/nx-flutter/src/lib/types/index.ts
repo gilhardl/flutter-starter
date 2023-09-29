@@ -40,6 +40,7 @@ export type FlutterWebRenderer = 'auto' | 'canvasKit' | 'html';
 export type FlutterCommand =
   | 'create'
   | 'analyze'
+  | 'attach'
   | 'clean'
   | 'gen-l10n'
   | 'install'

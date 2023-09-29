@@ -24,6 +24,11 @@
       "implementation": "./src/executors/run/executor",
       "schema": "./src/executors/run/schema.json",
       "description": "Run your Flutter app on an attached device."
+    },
+    "attach": {
+      "implementation": "./src/executors/attach/executor",
+      "schema": "./src/executors/attach/schema.json",
+      "description": "Attach to a running app."
     }
   }
 }
