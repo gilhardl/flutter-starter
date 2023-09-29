@@ -27,9 +27,9 @@ export interface FlutterRunExecutorOptionsNormalized
   dartDefineFromFile: string | null;
 
   /**
-   * Build a custom app flavor as defined by platform-specific build setup. Supports the use of product flavors in Android Gradle scripts, and the use of custom Xcode schemes.
+   * Build a custom app flavor as defined by platform-specific build setup.\nSupports the use of product flavors in Android Gradle scripts, and the use of custom Xcode schemes.
    */
-  flavor: boolean | null;
+  flavor: string | null;
 
   /**
    * The renderer implementation to use when building for the web.\nAuto - Use the HTML renderer on mobile devices, and CanvasKit on desktop devices.\nCanvasKit - Always use the CanvasKit renderer. This renderer uses WebGL and WebAssembly to render graphics.\nHTML - Always use the HTML renderer. This renderer uses a combination of HTML, CSS, SVG, 2D Canvas, and WebGL.
@@ -37,7 +37,7 @@ export interface FlutterRunExecutorOptionsNormalized
   webRenderer: FlutterWebRenderer | null;
 
   /**
-   * Specify a pre-built application binary to use when running. For Android applications, this must be the path to an APK. For iOS applications, the path to an IPA. Other device types do not yet support prebuilt application binaries.
+   * Specify a pre-built application binary to use when running. For Android applications, this must be the path to an APK. For iOS applications, the path to an IPA.\nOther device types do not yet support prebuilt application binaries.
    */
   useApplicationBinary: string | null;
 

@@ -25,6 +25,10 @@ export default async function (
 
   return flutterCommandExecutor(project, 'run', {
     keyValue: [
+      {
+        key: 'device-id',
+        value: normalizedOptions.deviceId,
+      },
       ...(normalizedOptions.dartDefine?.map((value) => ({
         key: 'dart-define',
         value: value,
@@ -33,6 +37,7 @@ export default async function (
         key: 'dart-define-from-file',
         value: normalizedOptions.dartDefineFromFile,
       },
+      { key: 'flavor', value: normalizedOptions.flavor },
       {
         key: 'web-renderer',
         value: normalizedOptions.webRenderer,
@@ -81,7 +86,6 @@ export default async function (
           ]
         : []),
       { key: 'verbose', value: normalizedOptions.verbose },
-      { key: 'flavor', value: normalizedOptions.flavor },
       { key: 'trace-startup', value: normalizedOptions.traceStartup },
       {
         key: 'cache-startup-profile',

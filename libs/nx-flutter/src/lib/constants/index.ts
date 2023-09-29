@@ -64,7 +64,7 @@ export const DEFAULT_FLUTTER_CLI_ARGS = {
     mode: 'debug',
     dartDefine: [] as string[],
     dartDefineFromFile: undefined,
-    flavor: false,
+    flavor: undefined,
     webRenderer: 'auto',
     useApplicationBinary: undefined,
     traceStartup: false,
