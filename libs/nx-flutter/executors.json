@@ -10,6 +10,11 @@
       "schema": "./src/executors/clean/schema.json",
       "description": "Delete the build/ and .dart_tool/ directories."
     },
+    "gen-l10n": {
+      "implementation": "./src/executors/gen-l10n/executor",
+      "schema": "./src/executors/gen-l10n/schema.json",
+      "description": "Generate localizations for the current project."
+    },
     "run": {
       "implementation": "./src/executors/run/executor",
       "schema": "./src/executors/run/schema.json",
