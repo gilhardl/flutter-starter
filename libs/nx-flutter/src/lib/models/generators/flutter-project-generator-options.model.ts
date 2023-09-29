@@ -3,7 +3,7 @@ import {
   FlutterPlatform,
   FlutterProjectTemplate,
   IosLanguage,
-} from '../types';
+} from '../../types';
 
 /**
  * Base interface Nx generators options.

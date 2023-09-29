@@ -2,10 +2,10 @@ import { ExecutorContext } from '@nx/devkit';
 
 import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
 import { FlutterTestExecutorOptions } from './schema';
-import { FlutterTestExecutorOptionsNormalized } from '../../lib/models/flutter-test-executor-options.model';
+import { FlutterTestExecutorOptionsNormalized } from '../../lib/models/executors/flutter-test-executor-options.model';
 import flutterCommandExecutor, {
   normalizeCommandExecutorOptions,
-} from '../../lib/executors/flutter-command.executor';
+} from '../../lib/flutter-command.executor';
 
 /**
  * Nx executor for testing a Flutter application

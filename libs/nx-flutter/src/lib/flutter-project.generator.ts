@@ -7,22 +7,22 @@ import {
   workspaceRoot,
 } from '@nx/devkit';
 
-import { DEFAULT_FLUTTER_CLI_ARGS, NX_FLUTTER_PKG } from '../constants';
+import { DEFAULT_FLUTTER_CLI_ARGS, NX_FLUTTER_PKG } from './constants';
 import {
   AndroidLanguage,
   FlutterPlatform,
   FlutterProjectTemplate,
   IosLanguage,
-} from '../types';
+} from './types';
 import {
   FlutterProjectGeneratorOptions,
   FlutterProjectGeneratorOptionsNormalized,
-} from '../models/flutter-project-generator-options.model';
-import { addPluginToNxJson, isNxProject } from '../utils/nx.utils';
-import { quote } from '../utils/strings.utils';
-import { runFlutterCommand } from '../utils/flutter.utils';
-import { FlutterAppGeneratorOptions } from '../../generators/app/schema';
-import { FlutterPluginGeneratorOptions } from '../../generators/plugin/schema';
+} from './models/generators/flutter-project-generator-options.model';
+import { addPluginToNxJson, isNxProject } from './utils/nx.utils';
+import { quote } from './utils/strings.utils';
+import { runFlutterCommand } from './utils/flutter.utils';
+import { FlutterAppGeneratorOptions } from '../generators/app/schema';
+import { FlutterPluginGeneratorOptions } from '../generators/plugin/schema';
 
 /**
  * Nx generator for creating a Flutter project

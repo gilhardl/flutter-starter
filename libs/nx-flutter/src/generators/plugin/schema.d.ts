@@ -1,4 +1,4 @@
-import { FlutterProjectGeneratorOptions } from '../../lib/models/flutter-project-generator-options.model';
+import { FlutterProjectGeneratorOptions } from '../../lib/models/generators/flutter-project-generator-options.model';
 
 /**
  * Flutter plugin Nx generator options.

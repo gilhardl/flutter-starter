@@ -1,4 +1,4 @@
-import { FlutterTestReporter, FlutterWebRenderer } from '../types';
+import { FlutterTestReporter, FlutterWebRenderer } from '../../types';
 import { FlutterExecutorOptionsNormalized } from './flutter-executor-options.model';
 
 /**

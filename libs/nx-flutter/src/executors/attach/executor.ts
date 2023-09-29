@@ -2,10 +2,10 @@ import { ExecutorContext } from '@nx/devkit';
 
 import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
 import { FlutterAttachExecutorOptions } from './schema';
-import { FlutterAttachExecutorOptionsNormalized } from '../../lib/models/flutter-attach-executor-options.model';
+import { FlutterAttachExecutorOptionsNormalized } from '../../lib/models/executors/flutter-attach-executor-options.model';
 import flutterCommandExecutor, {
   normalizeCommandExecutorOptions,
-} from '../../lib/executors/flutter-command.executor';
+} from '../../lib/flutter-command.executor';
 
 /**
  * Nx executor for running a Flutter application

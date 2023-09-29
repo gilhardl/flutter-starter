@@ -2,10 +2,10 @@ import { ExecutorContext } from '@nx/devkit';
 
 import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
 import { FlutterCleanExecutorOptions } from './schema';
-import { FlutterCleanExecutorOptionsNormalized } from '../../lib/models/flutter-clean-executor-options.model';
+import { FlutterCleanExecutorOptionsNormalized } from '../../lib/models/executors/flutter-clean-executor-options.model';
 import flutterCommandExecutor, {
   normalizeCommandExecutorOptions,
-} from '../../lib/executors/flutter-command.executor';
+} from '../../lib/flutter-command.executor';
 
 /**
  * Nx executor for cleaning a Flutter project

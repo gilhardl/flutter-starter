@@ -1,5 +1,5 @@
 import { FlutterTestReporter, FlutterWebRenderer } from '../../types';
-import { FlutterExecutorOptions } from '../../lib/models/flutter-executor-options.model';
+import { FlutterExecutorOptions } from '../../lib/models/executors/flutter-executor-options.model';
 
 /**
  * Flutter test Nx executor options.

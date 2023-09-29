@@ -1,7 +1,7 @@
 import { Tree } from '@nx/devkit';
 
 import { FlutterAppGeneratorOptions } from './schema';
-import projectGenerator from '../../lib/generators/flutter-project.generator';
+import projectGenerator from '../../lib/flutter-project.generator';
 
 /**
  * Nx generator for creating a Flutter application

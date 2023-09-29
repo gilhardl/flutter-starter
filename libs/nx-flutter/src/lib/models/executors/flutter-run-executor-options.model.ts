@@ -1,4 +1,4 @@
-import { FlutterBuildMode, FlutterWebRenderer } from '../types';
+import { FlutterBuildMode, FlutterWebRenderer } from '../../types';
 import { FlutterExecutorOptionsNormalized } from './flutter-executor-options.model';
 
 /**

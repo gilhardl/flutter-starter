@@ -1,5 +1,5 @@
-import { FlutterPlatform, AndroidLanguage, IosLanguage } from '../../types';
-import { FlutterProjectGeneratorOptions } from '../../lib/models/flutter-project-generator-options.model';
+import { AndroidLanguage, FlutterPlatform, IosLanguage } from '../../types';
+import { FlutterProjectGeneratorOptions } from '../../lib/models/generators/flutter-project-generator-options.model';
 
 /**
  * Flutter application Nx generator options.

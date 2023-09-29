@@ -2,10 +2,10 @@ import { ExecutorContext } from '@nx/devkit';
 
 import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
 import { FlutterAnalyzeExecutorOptions } from './schema';
-import { FlutterAnalyzeExecutorOptionsNormalized } from '../../lib/models/flutter-analyze-executor-options.model';
+import { FlutterAnalyzeExecutorOptionsNormalized } from '../../lib/models/executors/flutter-analyze-executor-options.model';
 import flutterCommandExecutor, {
   normalizeCommandExecutorOptions,
-} from '../../lib/executors/flutter-command.executor';
+} from '../../lib/flutter-command.executor';
 
 /**
  * Nx executor for analyzing a Flutter project

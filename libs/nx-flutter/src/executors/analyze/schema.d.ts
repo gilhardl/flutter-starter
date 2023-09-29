@@ -1,4 +1,4 @@
-import { FlutterExecutorOptions } from '../../lib/models/flutter-executor-options.model';
+import { FlutterExecutorOptions } from '../../lib/models/executors/flutter-executor-options.model';
 
 /**
  * Flutter analyze Nx executor options.

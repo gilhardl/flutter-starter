@@ -1,12 +1,12 @@
 import { join } from 'path';
 import { logger, ProjectConfiguration, workspaceRoot } from '@nx/devkit';
 
-import { CommandArguments, FlutterCommand } from '../types';
+import { CommandArguments, FlutterCommand } from './types';
 import {
   FlutterExecutorOptions,
   FlutterExecutorOptionsNormalized,
-} from '../models/flutter-executor-options.model';
-import { runFlutterCommand } from '../utils/flutter.utils';
+} from './models/executors/flutter-executor-options.model';
+import { runFlutterCommand } from './utils/flutter.utils';
 
 /**
  * Nx executor for running a Flutter command

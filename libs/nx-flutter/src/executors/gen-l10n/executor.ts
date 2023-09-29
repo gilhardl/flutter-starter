@@ -2,10 +2,10 @@ import { ExecutorContext } from '@nx/devkit';
 
 import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
 import { FlutterGenL10nExecutorOptions } from './schema';
-import { FlutterGenL10nExecutorOptionsNormalized } from '../../lib/models/flutter-gen-l10n-executor-options.model';
+import { FlutterGenL10nExecutorOptionsNormalized } from '../../lib/models/executors/flutter-gen-l10n-executor-options.model';
 import flutterCommandExecutor, {
   normalizeCommandExecutorOptions,
-} from '../../lib/executors/flutter-command.executor';
+} from '../../lib/flutter-command.executor';
 
 /**
  * Nx executor for generating a Flutter project localization files.

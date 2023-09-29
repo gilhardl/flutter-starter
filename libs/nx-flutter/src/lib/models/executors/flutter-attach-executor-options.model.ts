@@ -1,4 +1,4 @@
-import { FlutterBuildMode } from '../types';
+import { FlutterBuildMode } from '../../types';
 import { FlutterExecutorOptionsNormalized } from './flutter-executor-options.model';
 
 /**

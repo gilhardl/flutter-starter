@@ -1,5 +1,5 @@
 import { FlutterBuildMode, FlutterWebRenderer } from '../../types';
-import { FlutterExecutorOptions } from '../../lib/models/flutter-executor-options.model';
+import { FlutterExecutorOptions } from '../../lib/models/executors/flutter-executor-options.model';
 
 /**
  * Flutter run Nx executor options.
