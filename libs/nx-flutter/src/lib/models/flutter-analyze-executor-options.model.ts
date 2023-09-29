@@ -1,12 +1,10 @@
+import { FlutterExecutorOptionsNormalized } from './flutter-executor-options.model';
+
 /**
  * Normalized options passed to the `flutter analyze` command.
  */
-export interface FlutterAnalyzeExecutorOptionsNormalized {
-  /**
-   * Enable noisy logging, including all shell commands executed.
-   */
-  verbose: boolean | null;
-
+export interface FlutterAnalyzeExecutorOptionsNormalized
+  extends FlutterExecutorOptionsNormalized {
   /**
    * Analyze the current project, if applicable.
    */

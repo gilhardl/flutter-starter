@@ -2,6 +2,10 @@ import { join } from 'path';
 import { logger, ProjectConfiguration, workspaceRoot } from '@nx/devkit';
 
 import { CommandArguments, FlutterCommand } from '../types';
+import {
+  FlutterExecutorOptions,
+  FlutterExecutorOptionsNormalized,
+} from '../models/flutter-executor-options.model';
 import { runFlutterCommand } from '../utils/flutter.utils';
 
 /**
@@ -27,4 +31,26 @@ export default async function (
     logger.error(e);
     return { success: false };
   }
+}
+
+/**
+ * Normalize a Flutter command Nx executor options.
+ *
+ * - Set options to null if they are the same as the default options
+ *
+ * @param options the Nx executor options
+ * @param defaultOptions the default options to compare against
+ * @returns normalized options
+ */
+export function normalizeCommandExecutorOptions<
+  Options extends FlutterExecutorOptions,
+  OptionsNormalized extends FlutterExecutorOptionsNormalized
+>(options: Options, defaultOptions: Options): OptionsNormalized {
+  return Object.keys(options).reduce(
+    (normalizedOptions, key) => ({
+      ...normalizedOptions,
+      [key]: options[key] !== defaultOptions[key] ? options[key] : null,
+    }),
+    {} as OptionsNormalized
+  );
 }

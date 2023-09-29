@@ -1,14 +1,11 @@
 import { FlutterBuildMode, FlutterWebRenderer } from '../types';
+import { FlutterExecutorOptionsNormalized } from './flutter-executor-options.model';
 
 /**
  * Normalized options passed to the `flutter run` command.
  */
-export interface FlutterRunExecutorOptionsNormalized {
-  /**
-   * Enable noisy logging, including all shell commands executed.
-   */
-  verbose: boolean | null;
-
+export interface FlutterRunExecutorOptionsNormalized
+  extends FlutterExecutorOptionsNormalized {
   /**
    * Target device id or name (prefixes allowed).
    */

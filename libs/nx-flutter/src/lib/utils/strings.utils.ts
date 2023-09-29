@@ -1,5 +1,5 @@
 /**
- * Add quotes arround a string if necessary.
+ * Add quotes around a string if necessary.
  *
  * @param text string to return between quotes
  * @returns given string with quotes
