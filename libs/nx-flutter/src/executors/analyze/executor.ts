@@ -27,14 +27,14 @@ export default async function (
     keyValue: [{ key: 'write', value: normalizedOptions.write }],
     boolean: [
       { key: 'verbose', value: normalizedOptions.verbose },
-      { key: 'currentPackage', value: normalizedOptions.currentPackage },
+      { key: 'current-package', value: normalizedOptions.currentPackage },
       { key: 'watch', value: normalizedOptions.watch },
       { key: 'suggestions', value: normalizedOptions.suggestions },
       { key: 'pub', value: normalizedOptions.pub },
       { key: 'congratulate', value: normalizedOptions.congratulate },
       { key: 'preamble', value: normalizedOptions.preamble },
-      { key: 'fatalInfos', value: normalizedOptions.fatalInfos },
-      { key: 'fatalWarnings', value: normalizedOptions.fatalWarnings },
+      { key: 'fatal-infos', value: normalizedOptions.fatalInfos },
+      { key: 'fatal-warnings', value: normalizedOptions.fatalWarnings },
     ],
     positional: [],
   });
