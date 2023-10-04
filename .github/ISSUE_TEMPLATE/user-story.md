@@ -20,7 +20,7 @@ assignees: ''
 
 
 ## User story
-*A bullet-list of actions taken by the user to end in order to the expected result.*
+*A bullet-list of actions taken by the user in order to end in order to the expected result.*
 
 **User workflow :**
 
