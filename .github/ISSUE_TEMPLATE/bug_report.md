@@ -1,27 +1,34 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report an issue to help us improve
 title: ''
-labels: bug
+labels: BUG
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Describe the bug
+*A clear and concise description of what the bug is.*
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
 
-**Actual behavior**
-A clear and concise description of what actually happen.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## To Reproduce
+*An ordered-list of actions to take in order to reproduce the bug.*
 
-**Additional context**
-Add any other context or screenshots about the problem here.
+**Steps to reproduce the behavior :**
+
+1. 
+
+## Actual behavior
+*A clear and concise description of what actually happen.*
+
+
+
+## Expected behavior
+*A clear and concise description of what you expected to happen.*
+
+
+
+## Additional context
+*Add any other context, environnement informations or screenshots about the problem here.*
+

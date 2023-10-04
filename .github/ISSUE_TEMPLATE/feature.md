@@ -1,8 +1,8 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: Feature specification
+about: Describe a new feature for this project
 title: ''
-labels: REQ
+labels: FEAT
 assignees: ''
 
 ---
