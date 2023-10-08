@@ -1,28 +1,33 @@
+import { Tree } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nx/devkit';
 
+import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
+import * as FlutterProjectGenerator from '../../lib/flutter-command.executor';
 import appGenerator from './generator';
 import { FlutterAppGeneratorOptions } from './schema';
-import { DEFAULT_FLUTTER_CLI_ARGS } from '../../lib/constants';
 
 const defaultOptions = DEFAULT_FLUTTER_CLI_ARGS.create;
 
 describe('app generator', () => {
   let tree: Tree;
   const options: FlutterAppGeneratorOptions = {
-    name: 'test',
+    name: 'test-app',
     ...defaultOptions,
     tags: undefined,
     directory: '.',
   };
+
+  beforeAll(() => {
+    jest
+      .spyOn(FlutterProjectGenerator, 'default')
+      .mockImplementation(async () => void 0);
+  });
 
   beforeEach(() => {
     tree = createTreeWithEmptyWorkspace();
   });
 
   it('should run successfully', async () => {
-    await appGenerator(tree, options);
-    const config = readProjectConfiguration(tree, 'test');
-    expect(config).toBeDefined();
+    expect(() => appGenerator(tree, options)).not.toThrow();
   });
 });

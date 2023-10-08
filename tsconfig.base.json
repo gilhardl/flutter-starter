@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@gilhardl/nx-flutter": ["libs/nx-flutter/src/index.ts"]
+      "@flutter-starter/nx-flutter": ["libs/nx-flutter/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

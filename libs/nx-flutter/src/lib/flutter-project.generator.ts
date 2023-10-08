@@ -7,7 +7,7 @@ import {
   workspaceRoot,
 } from '@nx/devkit';
 
-import { DEFAULT_FLUTTER_CLI_ARGS, NX_FLUTTER_PKG } from './constants';
+import { DEFAULT_FLUTTER_CLI_ARGS, NX_PLUGIN_PACKAGE } from './constants';
 import {
   AndroidLanguage,
   FlutterPlatform,
@@ -36,9 +36,9 @@ export default async function (
   options: FlutterProjectGeneratorOptions,
   tree: Tree
 ) {
-  addPluginToNxJson(tree, NX_FLUTTER_PKG);
+  addPluginToNxJson(tree, NX_PLUGIN_PACKAGE);
 
-  const normalizedOptions = normalizeOptions(
+  const normalizedOptions = normalizeProjectGeneratorOptions(
     template,
     options,
     getWorkspaceLayout(tree)
@@ -97,7 +97,7 @@ export default async function (
  * @param workspaceLayout the Nx workspace layout config
  * @returns normalized options
  */
-function normalizeOptions(
+export function normalizeProjectGeneratorOptions(
   template: FlutterProjectTemplate,
   options: FlutterProjectGeneratorOptions,
   workspaceLayout: { appsDir: string; libsDir: string }
@@ -234,7 +234,7 @@ function getNxTargets(
       { name: 'attach', command: 'attach' },
       { name: 'install', command: 'install' }
     );
-    if (!!options.platforms) {
+    if (options.platforms) {
       if (options.platforms.indexOf('android') != -1) {
         tasks.push(
           { name: 'build-aar', command: 'build aar' },

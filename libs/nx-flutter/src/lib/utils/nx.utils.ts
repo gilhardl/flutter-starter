@@ -24,7 +24,7 @@ export function isNxProject(directory: string): boolean {
  * @param filePath the file path to check
  * @returns true if the file path is in the Nx workspace, false otherwise
  */
-export function isFilePathInWorkspace(filePath: string) {
+export function isFilePathInWorkspace(filePath: string): boolean {
   return filePath.startsWith(resolve(workspaceRoot));
 }
 
@@ -34,7 +34,7 @@ export function isFilePathInWorkspace(filePath: string) {
  * @param project the Nx project
  * @returns the path to the project root
  */
-export function getProjectRoot(project: ProjectConfiguration) {
+export function getProjectRoot(project: ProjectConfiguration): string {
   return join(workspaceRoot, project.root);
 }
 

@@ -1,12 +1,17 @@
 /**
  * Name of the Nx plugin.
  */
-export const NX_FLUTTER = 'nx-flutter';
+export const NX_PLUGIN_NAME = 'nx-flutter';
+
+/**
+ * Scope of the Nx plugin.
+ */
+export const NX_PLUGIN_SCOPE = '@flutter-starter';
 
 /**
  * Package name of the Nx plugin.
  */
-export const NX_FLUTTER_PKG = '@gilhardl/nx-flutter';
+export const NX_PLUGIN_PACKAGE = `${NX_PLUGIN_SCOPE}/${NX_PLUGIN_NAME}`;
 
 /**
  * Default Flutter CLI arguments for each command.

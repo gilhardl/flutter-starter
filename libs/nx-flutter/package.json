@@ -1,5 +1,5 @@
 {
-  "name": "@gilhardl/nx-flutter",
+  "name": "@flutter-starter/nx-flutter",
   "version": "0.0.1",
   "dependencies": {
     "@nx/devkit": "16.8.0",
