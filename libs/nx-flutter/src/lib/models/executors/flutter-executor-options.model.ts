@@ -5,9 +5,12 @@
  * additional options.
  *
  * - @see FlutterAnalyzeExecutorOptions
+ * - @see FlutterAttachExecutorOptions
  * - @see FlutterCleanExecutorOptions
  * - @see FlutterGenL10nExecutorOptions
+ * - @see FlutterInstallExecutorOptions
  * - @see FlutterRunExecutorOptions
+ * - @see FlutterTestExecutorOptions
  */
 export interface FlutterExecutorOptions {
   /**
@@ -23,9 +26,12 @@ export interface FlutterExecutorOptions {
  * additional options.
  *
  * - @see FlutterAnalyzeExecutorOptionsNormalized
+ * - @see FlutterAttachExecutorOptionsNormalized
  * - @see FlutterCleanExecutorOptionsNormalized
  * - @see FlutterGenL10nExecutorOptionsNormalized
+ * - @see FlutterInstallExecutorOptionsNormalized
  * - @see FlutterRunExecutorOptionsNormalized
+ * - @see FlutterTestExecutorOptionsNormalized
  */
 export interface FlutterExecutorOptionsNormalized {
   /**
